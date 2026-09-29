@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Eleanor & Alexander</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blush: {
+                            50: '#fff5f6',
+                            100: '#fde8eb',
+                            200: '#f9d5db',
+                            300: '#f4b2be',
+                            400: '#eb869b',
+                            500: '#de5b77',
+                        },
+                        ivory: {
+                            DEFAULT: '#fdfbf7',
+                            dark: '#f6f1e7'
+                        },
+                        gold: {
+                            light: '#f4e0ad',
+                            DEFAULT: '#c5a059',
+                            dark: '#9a7936'
+                        },
+                        burgundy: {
+                            DEFAULT: '#581825',
+                            light: '#722333',
+                            dark: '#3d0f18'
+                        }
+                    },
+                    fontFamily: {
+                        script: ['"Alex Brush"', 'cursive'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft-gold': '0 10px 30px -10px rgba(197, 160, 89, 0.25)',
+                        'inner-glow': 'inset 0 0 15px rgba(197, 160, 89, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #fdfbf7;
+            color: #4a4a4a;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #a37c3f 0%, #d4af37 50%, #9a7936 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-gradient {
+            border-image: linear-gradient(to bottom right, #f4e0ad, #c5a059, #9a7936) 1;
+        }
+
+        .floating-leaf {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .envelope-wrapper {
+            perspective: 1000px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdfbf7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e2d1b3;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c5a059;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blush-200 selection:text-burgundy">
+
+    <!-- Audio Player Floating Toggle -->
+    <div class="fixed top-5 right-5 z-50">
+        <button id="audio-toggle" class="bg-white/80 backdrop-blur-md text-burgundy border border-gold/40 p-3 rounded-full shadow-lg hover:shadow-gold transition-all duration-300 flex items-center justify-center w-12 h-12 focus:outline-none group">
+            <i id="audio-icon" class="fas fa-music text-lg group-hover:scale-110 transition-transform"></i>
+            <span class="sr-only">Toggle Audio</span>
+        </button>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-ivory/80 backdrop-blur-md border-b border-gold/10 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="font-script text-2xl md:text-3xl text-burgundy font-bold">A & E</a>
+            <div class="hidden md:flex space-x-8 text-xs tracking-widest uppercase font-medium text-gray-700">
+                <a href="#hero" class="hover:text-gold transition-colors">Home</a>
+                <a href="#details" class="hover:text-gold transition-colors">Details</a>
+                <a href="#story" class="hover:text-gold transition-colors">Our Story</a>
+                <a href="#schedule" class="hover:text-gold transition-colors">Schedule</a>
+                <a href="#rsvp" class="hover:text-gold transition-colors">RSVP</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-burgundy text-xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-ivory border-b border-gold/20 px-6 py-4 flex flex-col space-y-3 text-sm uppercase tracking-wider font-medium text-center">
+            <a href="#hero" class="mobile-nav-link py-1 hover:text-gold">Home</a>
+            <a href="#details" class="mobile-nav-link py-1 hover:text-gold">Details</a>
+            <a href="#story" class="mobile-nav-link py-1 hover:text-gold">Our Story</a>
+            <a href="#schedule" class="mobile-nav-link py-1 hover:text-gold">Schedule</a>
+            <a href="#rsvp" class="mobile-nav-link py-1 hover:text-gold">RSVP</a>
+        </div>
+    </nav>
+
+    <!-- HERO / INVITATION HEADER -->
+    <section id="hero" class="min-h-screen relative flex items-center justify-center pt-20 pb-12 px-4 overflow-hidden">
+        <!-- Floating Botanical Accents -->
+        <div class="floating-leaf top-10 left-5 w-24 md:w-40 text-gold/20">
+            <svg viewBox="0 0 100 100" fill="currentColor"><path d="M50,0 C60,30 90,40 100,50 C70,60 60,90 50,100 C40,70 10,60 0,50 C30,40 40,10 50,0 Z"/></svg>
+        </div>
+        <div class="floating-leaf bottom-12 right-6 w-32 md:w-48 text-blush-300/30" style="animation-delay: -3s;">
+            <svg viewBox="0 0 100 100" fill="currentColor"><path d="M50,0 C60,30 90,40 100,50 C70,60 60,90 50,100 C40,70 10,60 0,50 C30,40 40,10 50,0 Z"/></svg>
+        </div>
+
+        <!-- Main Invitation Frame -->
+        <div class="max-w-3xl w-full bg-white rounded-3xl p-8 md:p-14 shadow-2xl border border-gold/30 text-center relative z-10 my-8 backdrop-blur-sm bg-white/95">
+            <!-- Delicate Floral Header Graphic -->
+            <div class="mb-6 flex justify-center text-gold">
+                <svg class="w-20 h-12" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M10 25 Q 35 10, 50 25 T 90 25" />
+                    <circle cx="50" cy="25" r="4" fill="#c5a059" />
+                    <path d="M35 25 Q 40 15, 50 15 Q 60 15, 65 25" />
+                </svg>
+            </div>
+
+            <p class="font-sans text-xs md:text-sm tracking-widest text-burgundy/80 uppercase mb-3">Together with their families</p>
+            
+            <!-- Main Names -->
+            <h1 class="font-script text-5xl md:text-7xl lg:text-8xl text-burgundy mb-2 leading-none">
+                Anjisan Atoi
+            </h1>
+            <div class="font-serif italic text-2xl md:text-3xl text-gold my-2">&</div>
+            <h1 class="font-script text-5xl md:text-7xl lg:text-8xl text-burgundy mb-6 leading-none">
+                Elizaberth Mentri
+            </h1>
+
+            <p class="font-serif italic text-lg md:text-xl text-gray-600 max-w-lg mx-auto mb-8">
+                joyfully invite you to celebrate their wedding day as they tie the knot in love and harmony
+            </p>
+
+            <!-- Date Banner -->
+            <div class="inline-block border-y-2 border-gold/40 py-3 px-8 my-4">
+                <p class="font-sans uppercase text-sm md:text-base tracking-widest font-semibold text-burgundy">
+                    Saturday <span class="text-gold mx-2">•</span> 21 Nov, 2026 <span class="text-gold mx-2">•</span> 10:00 AM
+                </p>
+            </div>
+
+            <p class="font-serif text-lg text-gray-700 mt-4">Mega Methodist Church & Dewan Temuan</p>
+            <p class="font-sans text-xs tracking-wider text-gray-500 uppercase mt-1">Pertaling Jaya , Selangor</p>
+
+            <!-- CTA Buttons -->
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <a href="#rsvp" class="bg-burgundy text-white font-sans text-xs uppercase tracking-widest px-8 py-3.5 rounded-full shadow-lg hover:bg-burgundy-light transition-all transform hover:-translate-y-0.5">
+                    RSVP Now
+                </a>
+                <button onclick="copyInvitationLink()" class="bg-ivory border border-gold text-burgundy font-sans text-xs uppercase tracking-widest px-6 py-3.5 rounded-full hover:bg-gold/10 transition-all flex items-center gap-2">
+                    <i class="fas fa-share-alt"></i> Share Card
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTDOWN TIMER SECTION -->
+    <section class="py-12 bg-ivory-dark border-y border-gold/20">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="font-serif italic text-2xl text-burgundy mb-6">Counting Down to the Big Day</h3>
+            
+            <div id="countdown" class="grid grid-cols-4 gap-3 md:gap-6 max-w-xl mx-auto">
+                <div class="bg-white p-3 md:p-5 rounded-2xl shadow-sm border border-gold/20">
+                    <span id="cd-days" class="font-serif text-2xl md:text-4xl text-burgundy font-bold block">00</span>
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Days</span>
+                </div>
+                <div class="bg-white p-3 md:p-5 rounded-2xl shadow-sm border border-gold/20">
+                    <span id="cd-hours" class="font-serif text-2xl md:text-4xl text-burgundy font-bold block">00</span>
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Hours</span>
+                </div>
+                <div class="bg-white p-3 md:p-5 rounded-2xl shadow-sm border border-gold/20">
+                    <span id="cd-minutes" class="font-serif text-2xl md:text-4xl text-burgundy font-bold block">00</span>
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Mins</span>
+                </div>
+                <div class="bg-white p-3 md:p-5 rounded-2xl shadow-sm border border-gold/20">
+                    <span id="cd-seconds" class="font-serif text-2xl md:text-4xl text-burgundy font-bold block">00</span>
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Secs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENT DETAILS SECTION -->
+    <section id="details" class="py-20 px-4 max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-gold font-sans text-xs uppercase tracking-widest font-semibold">When & Where</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-burgundy mt-1">Wedding Details</h2>
+            <div class="w-16 h-0.5 bg-gold mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Venue Card 1: Ceremony -->
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gold/20 hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="w-12 h-12 bg-blush-100 rounded-2xl flex items-center justify-center text-burgundy mb-6 text-xl">
+                    <i class="fas fa-church"></i>
+                </div>
+                <h3 class="font-serif text-2xl text-burgundy font-bold mb-2">The Ceremony</h3>
+                <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                    Join us as we exchange vows under the glass pavilion surrounded by the vineyard hills.
+                </p>
+                <ul class="text-xs space-y-2 text-gray-500 mb-6 font-medium">
+                    <li class="flex items-center gap-2"><i class="far fa-clock text-gold"></i> Saturday, November 21, 2026 at 10:00 AM</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-gold"></i> Mega Chinese Methodist Church (Mega CMC)</li>
+                </ul>
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="downloadICS('Ceremony')" class="text-xs border border-burgundy/30 text-burgundy px-4 py-2 rounded-full hover:bg-burgundy hover:text-white transition-colors">
+                        <i class="far fa-calendar-plus mr-1"></i> Add to Calendar
+                    </button>
+                    <a href="https://maps.google.com" target="_blank" rel="noopener" class="text-xs bg-gold/10 text-gold-dark px-4 py-2 rounded-full hover:bg-gold hover:text-white transition-colors">
+                        <i class="fas fa-directions mr-1"></i> View Map
+                    </a>
+                </div>
+            </div>
+
+            <!-- Venue Card 2: Reception -->
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gold/20 hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="w-12 h-12 bg-blush-100 rounded-2xl flex items-center justify-center text-burgundy mb-6 text-xl">
+                    <i class="fas fa-glass-cheers"></i>
+                </div>
+                <h3 class="font-serif text-2xl text-burgundy font-bold mb-2">Reception</h3>
+                <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                    Followed by a sunset cocktail reception, three-course culinary experience, and dancing!
+                </p>
+                <ul class="text-xs space-y-2 text-gray-500 mb-6 font-medium">
+                    <li class="flex items-center gap-2"><i class="far fa-clock text-gold"></i> Saturday, November 21, 2026 at 12:00 PM</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-gold"></i> Dewan Desa Temuan</li>
+                </ul>
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="downloadICS('Reception')" class="text-xs border border-burgundy/30 text-burgundy px-4 py-2 rounded-full hover:bg-burgundy hover:text-white transition-colors">
+                        <i class="far fa-calendar-plus mr-1"></i> Add to Calendar
+                    </button>
+                    <a href="https://maps.google.com" target="_blank" rel="noopener" class="text-xs bg-gold/10 text-gold-dark px-4 py-2 rounded-full hover:bg-gold hover:text-white transition-colors">
+                        <i class="fas fa-directions mr-1"></i> View Map
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR STORY TIMELINE -->
+    <section id="story" class="py-20 bg-ivory-dark border-t border-gold/10">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-gold font-sans text-xs uppercase tracking-widest font-semibold">How It Began</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-burgundy mt-1">Our Story</h2>
+                <div class="w-16 h-0.5 bg-gold mx-auto mt-4"></div>
+            </div>
+
+            <!-- Timeline items -->
+            <div class="relative border-l-2 border-gold/30 ml-4 md:ml-32 space-y-12">
+                <!-- Event 1 -->
+                <div class="relative pl-6 md:pl-8 group">
+                    <div class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-gold border-4 border-white"></div>
+                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">Autumn 2022</span>
+                    <h3 class="font-serif text-2xl text-burgundy mb-2">First Meeting in Seattle</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed max-w-lg">
+                        We accidentally ordered the exact same artisan coffee blend on a rainy Tuesday morning. A simple laughter over mix-up turned into a 3-hour conversation.
+                    </p>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="relative pl-6 md:pl-8 group">
+                    <div class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-gold border-4 border-white"></div>
+                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">Summer 2024</span>
+                    <h3 class="font-serif text-2xl text-burgundy mb-2">The First Trip Together</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed max-w-lg">
+                        Exploring the Amalfi coastline, discovering hidden gelaterias, and realizing that we were each other's favorite travel companion for life.
+                    </p>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="relative pl-6 md:pl-8 group">
+                    <div class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-burgundy border-4 border-white"></div>
+                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">Winter 2026</span>
+                    <h3 class="font-serif text-2xl text-burgundy mb-2">He Asked, She Said Yes!</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed max-w-lg">
+                        Under a canopy of snow-dusted pines in Aspen, Alexander got down on one knee. Eleanor's joyful "Yes" echoed through the mountains.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCHEDULE / ITINERARY SECTION -->
+    <section id="schedule" class="py-20 px-4 max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-gold font-sans text-xs uppercase tracking-widest font-semibold">The Big Day</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-burgundy mt-1">Wedding Itinerary</h2>
+            <div class="w-16 h-0.5 bg-gold mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="bg-white p-6 rounded-3xl border border-gold/20 shadow-sm flex flex-col items-center">
+                <span class="text-3xl text-gold mb-3"><i class="fas fa-heart font-light"></i></span>
+                <span class="text-xs font-semibold uppercase tracking-widest text-burgundy">3:30 PM</span>
+                <h4 class="font-serif text-xl font-bold text-gray-800 mt-2">Guest Arrival</h4>
+                <p class="text-xs text-gray-500 mt-2">Welcome drinks & chamber quartet quartet strings</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-gold/20 shadow-sm flex flex-col items-center">
+                <span class="text-3xl text-gold mb-3"><i class="fas fa-ring"></i></span>
+                <span class="text-xs font-semibold uppercase tracking-widest text-burgundy">4:00 PM</span>
+                <h4 class="font-serif text-xl font-bold text-gray-800 mt-2">Ceremony</h4>
+                <p class="text-xs text-gray-500 mt-2">Exchange of wedding vows & rings</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-gold/20 shadow-sm flex flex-col items-center">
+                <span class="text-3xl text-gold mb-3"><i class="fas fa-wine-glass-alt"></i></span>
+                <span class="text-xs font-semibold uppercase tracking-widest text-burgundy">5:30 PM</span>
+                <h4 class="font-serif text-xl font-bold text-gray-800 mt-2">Cocktails & Feast</h4>
+                <p class="text-xs text-gray-500 mt-2">Sunset cocktails, gourmet dinner & toasts</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-gold/20 shadow-sm flex flex-col items-center">
+                <span class="text-3xl text-gold mb-3"><i class="fas fa-music"></i></span>
+                <span class="text-xs font-semibold uppercase tracking-widest text-burgundy">8:00 PM</span>
+                <h4 class="font-serif text-xl font-bold text-gray-800 mt-2">Party & Dancing</h4>
+                <p class="text-xs text-gray-500 mt-2">First dance, live band & late night treats</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP FORM SECTION -->
+    <section id="rsvp" class="py-20 bg-blush-50 relative">
+        <div class="max-w-2xl mx-auto px-4">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gold/30">
+                <div class="text-center mb-10">
+                    <span class="text-gold font-sans text-xs uppercase tracking-widest font-semibold">Kindly Respond</span>
+                    <h2 class="font-serif text-4xl text-burgundy mt-1">RSVP</h2>
+                    <p class="text-xs text-gray-500 mt-2">Please respond by May 1, 2027</p>
+                </div>
+
+                <!-- Form Container -->
+                <form id="rsvp-form" class="space-y-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider font-semibold text-gray-700 mb-2">Full Name *</label>
+                        <input type="text" id="guest-name" required placeholder="e.g. Sarah Jenkins" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider font-semibold text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" id="guest-email" required placeholder="sarah@example.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider font-semibold text-gray-700 mb-2">Attendance Status *</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="border border-gray-200 rounded-xl p-3 flex items-center gap-3 cursor-pointer hover:border-gold transition">
+                                <input type="radio" name="attendance" value="attending" checked class="text-burgundy focus:ring-gold">
+                                <span class="text-xs font-medium text-gray-700">Joyfully Accepts</span>
+                            </label>
+                            <label class="border border-gray-200 rounded-xl p-3 flex items-center gap-3 cursor-pointer hover:border-gold transition">
+                                <input type="radio" name="attendance" value="declining" class="text-burgundy focus:ring-gold">
+                                <span class="text-xs font-medium text-gray-700">Regretfully Declines</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="additional-fields" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider font-semibold text-gray-700 mb-2">Number of Guests</label>
+                                <select id="guest-count" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold outline-none text-sm">
+                                    <option value="1">1 Person</option>
+                                    <option value="2">2 Persons</option>
+                                    <option value="3">3 Persons</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider font-semibold text-gray-700 mb-2">Meal Preference</label>
+                                <select id="meal-preference" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold outline-none text-sm">
+                                    <option value="roasted-beef">Herb Roasted Beef Tenderloin</option>
+                                    <option value="pan-salmon">Pan-Seared Salmon</option>
+                                    <option value="vegetarian">Wild Mushroom Risotto (Vegetarian/GF)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider font-semibold text-gray-700 mb-2">Song Request or Warm Wishes</label>
+                            <textarea id="guest-notes" rows="3" placeholder="What song will get you on the dance floor? Or leave a note for the couple..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition text-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-burgundy text-white font-sans text-xs uppercase tracking-widest py-4 rounded-xl shadow-lg hover:bg-burgundy-light transition transform hover:-translate-y-0.5">
+                        Submit RSVP
+                    </button>
+                </form>
+
+                <!-- Response Confirmation Modal / Message Box -->
+                <div id="rsvp-success" class="hidden text-center py-8">
+                    <div class="w-16 h-16 bg-blush-200 rounded-full flex items-center justify-center text-burgundy text-2xl mx-auto mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="font-serif text-3xl text-burgundy mb-2">Thank You!</h3>
+                    <p id="rsvp-success-text" class="text-sm text-gray-600 max-w-md mx-auto mb-6">
+                        Your response has been received. We can't wait to celebrate with you!
+                    </p>
+                    <button onclick="resetRsvpForm()" class="text-xs text-gold underline font-semibold tracking-wider uppercase hover:text-burgundy">
+                        Edit Response
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-ivory text-center border-t border-gold/20">
+        <p class="font-script text-4xl text-burgundy mb-2">Eleanor & Alexander</p>
+        <p class="text-xs uppercase tracking-widest text-gold mb-6">#EleanorAndAlexander2027</p>
+        <p class="text-[10px] uppercase tracking-wider text-gray-400">Designed with Love for Special Moments</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. COUNTDOWN TIMER LOGIC ---
+        const targetDate = new Date('November 21, 2026 10:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+                document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- 2. WEB AUDIO SYNTHESIZER (Gentle Wedding Chime Loop) ---
+        let audioCtx = null;
+        let isPlaying = false;
+        let audioInterval = null;
+
+        const chords = [
+            [261.63, 329.63, 392.00, 523.25], // C Major
+            [220.00, 261.63, 329.63, 440.00], // A Minor
+            [174.61, 220.00, 261.63, 349.23], // F Major
+            [196.00, 246.94, 293.66, 392.00]  // G Major
+        ];
+
+        function playSoftChime() {
+            if (!audioCtx) return;
+            const now = audioCtx.currentTime;
+            const chord = chords[Math.floor(Math.random() * chords.length)];
+            
+            chord.forEach((freq, idx) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, now + idx * 0.2);
+                
+                gain.gain.setValueAtTime(0, now + idx * 0.2);
+                gain.gain.linearRampToValueAtTime(0.04, now + idx * 0.2 + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.2 + 2.5);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now + idx * 0.2);
+                osc.stop(now + idx * 0.2 + 2.6);
+            });
+        }
+
+        const audioBtn = document.getElementById('audio-toggle');
+        const audioIcon = document.getElementById('audio-icon');
+
+        audioBtn.addEventListener('click', () => {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (!isPlaying) {
+                audioCtx.resume();
+                isPlaying = true;
+                audioIcon.className = "fas fa-volume-up text-lg text-gold animate-pulse";
+                playSoftChime();
+                audioInterval = setInterval(playSoftChime, 3500);
+            } else {
+                isPlaying = false;
+                audioIcon.className = "fas fa-music text-lg";
+                clearInterval(audioInterval);
+            }
+        });
+
+        // --- 3. RSVP FORM HANDLING & LOCALSTORAGE ---
+        const rsvpForm = document.getElementById('rsvp-form');
+        const rsvpSuccess = document.getElementById('rsvp-success');
+        const attendanceRadios = document.getElementsByName('attendance');
+        const additionalFields = document.getElementById('additional-fields');
+
+        // Toggle additional RSVP fields based on attendance
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'declining') {
+                    additionalFields.classList.add('hidden');
+                } else {
+                    additionalFields.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Load existing RSVP if stored
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedRSVP = localStorage.getItem('wedding_rsvp');
+            if (savedRSVP) {
+                const data = JSON.parse(savedRSVP);
+                displayRsvpSuccess(data);
+            }
+        });
+
+        rsvpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const rsvpData = {
+                name: document.getElementById('guest-name').value,
+                email: document.getElementById('guest-email').value,
+                attendance: document.querySelector('input[name="attendance"]:checked').value,
+                guests: document.getElementById('guest-count').value,
+                meal: document.getElementById('meal-preference').value,
+                notes: document.getElementById('guest-notes').value
+            };
+
+            // Save state
+            localStorage.setItem('wedding_rsvp', JSON.stringify(rsvpData));
+            displayRsvpSuccess(rsvpData);
+        });
+
+        function displayRsvpSuccess(data) {
+            rsvpForm.classList.add('hidden');
+            rsvpSuccess.classList.remove('hidden');
+            
+            const successText = document.getElementById('rsvp-success-text');
+            if (data.attendance === 'attending') {
+                successText.innerHTML = `We are thrilled to welcome you, <strong>${data.name}</strong>! A confirmation email will be sent to ${data.email}.`;
+            } else {
+                successText.innerHTML = `Thank you for letting us know, <strong>${data.name}</strong>. You will be missed in our special day!`;
+            }
+        }
+
+        function resetRsvpForm() {
+            localStorage.removeItem('wedding_rsvp');
+            rsvpSuccess.classList.add('hidden');
+            rsvpForm.classList.remove('hidden');
+        }
+
+        // --- 4. CALENDAR (.ICS) GENERATOR ---
+        function downloadICS(type) {
+            const title = type === 'Ceremony' ? "Eleanor & Alexander's Wedding Ceremony" : "Eleanor & Alexander's Wedding Reception";
+            const details = "Join us in celebrating Eleanor and Alexander's wedding day!";
+            const location = "The Grand Glasshouse Estate, Napa Valley, CA";
+            const startDate = "20270612T160000Z";
+            const endDate = "20270612T230000Z";
+
+            const icsData = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding Invitation//EN
+BEGIN:VEVENT
+SUMMARY:${title}
+DESCRIPTION:${details}
+LOCATION:${location}
+DTSTART:${startDate}
+DTEND:${endDate}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'wedding-event.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // --- 5. SHARE CARD LINK ---
+        function copyInvitationLink() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            // Subtle Toast Notification
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-5 left-1/2 -translate-x-1/2 bg-burgundy text-white px-6 py-3 rounded-full text-xs uppercase tracking-widest shadow-xl z-50 transition-all duration-300';
+            toast.innerText = 'Invitation link copied to clipboard!';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 2500);
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
