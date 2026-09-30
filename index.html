@@ -128,7 +128,7 @@
         </button>
     </div>
 
-    <audio id="music-player" src="bgmusic.mp3" loop preload="auto" autoplay playsinline></audio>
+    <audio id="music-player" src="bgmusic.mp3" loop preload="auto" autoplay muted playsinline></audio>
 
     <!-- Navigation Header -->
     <nav class="fixed top-0 left-0 w-full z-40 bg-ivory/80 backdrop-blur-md border-b border-gold/10 transition-all duration-300" id="navbar">
@@ -430,11 +430,13 @@
             if (!musicPlayer) return;
 
             if (shouldPlay) {
+                musicPlayer.muted = false;
                 musicPlayer.volume = 1;
                 musicPlayer.play().catch(() => {});
                 audioIcon.className = 'fas fa-volume-up text-lg text-gold animate-pulse';
             } else {
                 musicPlayer.pause();
+                musicPlayer.muted = true;
                 audioIcon.className = 'fas fa-music text-lg';
             }
         }
