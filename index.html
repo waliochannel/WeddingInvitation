@@ -115,15 +115,7 @@
         </button>
     </div>
 
-    <div class="fixed inset-0 pointer-events-none opacity-0 z-30 transition-opacity duration-300" id="music-embed-wrapper">
-        <iframe id="music-player"
-            src="https://www.youtube.com/embed/o25_Tn8BnFM?autoplay=0&mute=1&loop=1&playlist=o25_Tn8BnFM&controls=0&showinfo=0&rel=0"
-            title="Andmesh - Anugerah Terindah"
-            class="w-0 h-0 border-0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-        </iframe>
-    </div>
+    <audio id="music-player" src="bgmusic.mp3" loop preload="auto"></audio>
 
     <!-- Navigation Header -->
     <nav class="fixed top-0 left-0 w-full z-40 bg-ivory/80 backdrop-blur-md border-b border-gold/10 transition-all duration-300" id="navbar">
@@ -300,30 +292,53 @@
                 <!-- Event 1 -->
                 <div class="relative pl-6 md:pl-8 group">
                     <div class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-gold border-4 border-white"></div>
-                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">Autumn 2022</span>
-                    <h3 class="font-serif text-2xl text-burgundy mb-2">First Meeting in Seattle</h3>
+                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">October 2015</span>
+                    <h3 class="font-serif text-2xl text-burgundy mb-2">Where It All Began</h3>
                     <p class="text-sm text-gray-600 leading-relaxed max-w-lg">
-                        We accidentally ordered the exact same artisan coffee blend on a rainy Tuesday morning. A simple laughter over mix-up turned into a 3-hour conversation.
+                        Our story began at UNITEN, where we first met in November 2015. We started as friends, never imagining that one day we would become each other’s forever.
                     </p>
                 </div>
 
                 <!-- Event 2 -->
                 <div class="relative pl-6 md:pl-8 group">
                     <div class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-gold border-4 border-white"></div>
-                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">Summer 2024</span>
-                    <h3 class="font-serif text-2xl text-burgundy mb-2">The First Trip Together</h3>
+                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">April 2022</span>
+                    <h3 class="font-serif text-2xl text-burgundy mb-2">A Second Chance at Love</h3>
                     <p class="text-sm text-gray-600 leading-relaxed max-w-lg">
-                        Exploring the Amalfi coastline, discovering hidden gelaterias, and realizing that we were each other's favorite travel companion for life.
+                        After years apart and losing contact in 2020, Joshua reached out on his birthday, April 5, 2022. What started as a simple message slowly grew into love, and by mid-April, he had confessed his feelings.
                     </p>
                 </div>
 
                 <!-- Event 3 -->
                 <div class="relative pl-6 md:pl-8 group">
-                    <div class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-burgundy border-4 border-white"></div>
-                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">Winter 2026</span>
-                    <h3 class="font-serif text-2xl text-burgundy mb-2">He Asked, She Said Yes!</h3>
+                    <div class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-gold border-4 border-white"></div>
+                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">August 2022 – March 2023</span>
+                    <h3 class="font-serif text-2xl text-burgundy mb-2">A Love Worth Fighting For</h3>
                     <p class="text-sm text-gray-600 leading-relaxed max-w-lg">
-                        Under a canopy of snow-dusted pines in Aspen, Alexander got down on one knee. Eleanor's joyful "Yes" echoed through the mountains.
+                        Joshua travelled all the way to Kuching to meet my family and show how serious he was about us. Despite the challenges and my family’s initial hesitation, he never gave up on winning their hearts.
+                    </p>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="relative pl-6 md:pl-8 group">
+                    <div class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-burgundy border-4 border-white"></div>
+                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">2024 – 2025</span>
+                    <h3 class="font-serif text-2xl text-burgundy mb-2">Through Every Storm, God Had a Plan</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed max-w-lg">
+                        Even when our relationship faced its hardest moments and we went our separate ways, we never stopped believing in God’s plan. On December 6, 2025, our prayers were answered when my parents finally gave us their blessing.
+                    </p>
+                </div>
+
+                <!-- Event 5 -->
+                <div class="relative pl-6 md:pl-8 group">
+                    <div class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-burgundy border-4 border-white"></div>
+                    <span class="text-xs font-semibold text-gold tracking-widest uppercase mb-1 block">October 2026</span>
+                    <h3 class="font-serif text-2xl text-burgundy mb-2">Forever Starts Here</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed max-w-lg">
+                        After all the waiting, prayers, tears, and countless challenges, God brought us back together. With grateful hearts and our family’s blessing, we are ready to begin our forever on October 30, 2026.
+                    </p>
+                    <p class="text-sm text-gray-700 leading-relaxed max-w-lg mt-3 italic font-medium">
+                        Never give up when you walk with Jesus. ❤️
                     </p>
                 </div>
             </div>
@@ -391,9 +406,8 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- 2. SONG PLAYER (Andmesh - Anugerah Terindah) ---
+        // --- 2. SONG PLAYER (uploaded local MP3) ---
         const musicPlayer = document.getElementById('music-player');
-        const musicWrapper = document.getElementById('music-embed-wrapper');
         const audioBtn = document.getElementById('audio-toggle');
         const audioIcon = document.getElementById('audio-icon');
 
@@ -403,14 +417,11 @@
             if (!musicPlayer) return;
 
             if (shouldPlay) {
-                musicPlayer.src = 'https://www.youtube.com/embed/o25_Tn8BnFM?autoplay=1&mute=0&loop=1&playlist=o25_Tn8BnFM&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1';
-                musicWrapper.classList.remove('opacity-0');
-                musicWrapper.classList.add('opacity-100');
+                musicPlayer.volume = 1;
+                musicPlayer.play().catch(() => {});
                 audioIcon.className = 'fas fa-volume-up text-lg text-gold animate-pulse';
             } else {
-                musicPlayer.src = 'https://www.youtube.com/embed/o25_Tn8BnFM?autoplay=0&mute=1&loop=1&playlist=o25_Tn8BnFM&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1';
-                musicWrapper.classList.remove('opacity-100');
-                musicWrapper.classList.add('opacity-0');
+                musicPlayer.pause();
                 audioIcon.className = 'fas fa-music text-lg';
             }
         }
