@@ -115,6 +115,16 @@
         </button>
     </div>
 
+    <div class="fixed inset-0 pointer-events-none opacity-0 z-30 transition-opacity duration-300" id="music-embed-wrapper">
+        <iframe id="music-player"
+            src="https://www.youtube.com/embed/o25_Tn8BnFM?autoplay=0&mute=1&loop=1&playlist=o25_Tn8BnFM&controls=0&showinfo=0&rel=0"
+            title="Andmesh - Anugerah Terindah"
+            class="w-0 h-0 border-0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>
+    </div>
+
     <!-- Navigation Header -->
     <nav class="fixed top-0 left-0 w-full z-40 bg-ivory/80 backdrop-blur-md border-b border-gold/10 transition-all duration-300" id="navbar">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -381,61 +391,33 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- 2. WEB AUDIO SYNTHESIZER (Gentle Wedding Chime Loop) ---
-        let audioCtx = null;
-        let isPlaying = false;
-        let audioInterval = null;
-
-        const chords = [
-            [261.63, 329.63, 392.00, 523.25], // C Major
-            [220.00, 261.63, 329.63, 440.00], // A Minor
-            [174.61, 220.00, 261.63, 349.23], // F Major
-            [196.00, 246.94, 293.66, 392.00]  // G Major
-        ];
-
-        function playSoftChime() {
-            if (!audioCtx) return;
-            const now = audioCtx.currentTime;
-            const chord = chords[Math.floor(Math.random() * chords.length)];
-            
-            chord.forEach((freq, idx) => {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, now + idx * 0.2);
-                
-                gain.gain.setValueAtTime(0, now + idx * 0.2);
-                gain.gain.linearRampToValueAtTime(0.04, now + idx * 0.2 + 0.1);
-                gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.2 + 2.5);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start(now + idx * 0.2);
-                osc.stop(now + idx * 0.2 + 2.6);
-            });
-        }
-
+        // --- 2. SONG PLAYER (Andmesh - Anugerah Terindah) ---
+        const musicPlayer = document.getElementById('music-player');
+        const musicWrapper = document.getElementById('music-embed-wrapper');
         const audioBtn = document.getElementById('audio-toggle');
         const audioIcon = document.getElementById('audio-icon');
 
-        audioBtn.addEventListener('click', () => {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
+        let isPlaying = false;
 
-            if (!isPlaying) {
-                audioCtx.resume();
-                isPlaying = true;
-                audioIcon.className = "fas fa-volume-up text-lg text-gold animate-pulse";
-                playSoftChime();
-                audioInterval = setInterval(playSoftChime, 3500);
+        function setMusicState(shouldPlay) {
+            if (!musicPlayer) return;
+
+            if (shouldPlay) {
+                musicPlayer.src = 'https://www.youtube.com/embed/o25_Tn8BnFM?autoplay=1&mute=0&loop=1&playlist=o25_Tn8BnFM&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1';
+                musicWrapper.classList.remove('opacity-0');
+                musicWrapper.classList.add('opacity-100');
+                audioIcon.className = 'fas fa-volume-up text-lg text-gold animate-pulse';
             } else {
-                isPlaying = false;
-                audioIcon.className = "fas fa-music text-lg";
-                clearInterval(audioInterval);
+                musicPlayer.src = 'https://www.youtube.com/embed/o25_Tn8BnFM?autoplay=0&mute=1&loop=1&playlist=o25_Tn8BnFM&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1';
+                musicWrapper.classList.remove('opacity-100');
+                musicWrapper.classList.add('opacity-0');
+                audioIcon.className = 'fas fa-music text-lg';
             }
+        }
+
+        audioBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            setMusicState(isPlaying);
         });
 
         // --- 3. CALENDAR (.ICS) GENERATOR ---
