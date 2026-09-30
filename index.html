@@ -115,7 +115,7 @@
         </button>
     </div>
 
-    <audio id="music-player" src="bgmusic.mp3" loop preload="auto"></audio>
+    <audio id="music-player" src="bgmusic.mp3" loop preload="auto" autoplay playsinline></audio>
 
     <!-- Navigation Header -->
     <nav class="fixed top-0 left-0 w-full z-40 bg-ivory/80 backdrop-blur-md border-b border-gold/10 transition-all duration-300" id="navbar">
@@ -411,7 +411,7 @@
         const audioBtn = document.getElementById('audio-toggle');
         const audioIcon = document.getElementById('audio-icon');
 
-        let isPlaying = false;
+        let isPlaying = true;
 
         function setMusicState(shouldPlay) {
             if (!musicPlayer) return;
@@ -425,6 +425,8 @@
                 audioIcon.className = 'fas fa-music text-lg';
             }
         }
+
+        setMusicState(true);
 
         audioBtn.addEventListener('click', () => {
             isPlaying = !isPlaying;
