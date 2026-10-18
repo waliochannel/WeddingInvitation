@@ -174,7 +174,8 @@
                 </svg>
             </div>
 
-            <p id="guest-name" class="font-serif italic text-xl md:text-2xl text-gold mb-3"></p>
+            <p id="guest-name" class="font-serif italic text-2xl md:text-4xl font-semibold text-gold leading-tight mb-3"></p>
+            <p class="font-serif italic text-lg md:text-xl text-gray-600 mb-3">You are invited to celebrate</p>
             <p class="font-sans text-xs md:text-sm tracking-widest text-burgundy/80 uppercase mb-3">Together with their families</p>
             
             <!-- Main Names -->
@@ -187,7 +188,7 @@
             </h1>
 
             <p class="font-serif italic text-lg md:text-xl text-gray-600 max-w-lg mx-auto mb-8">
-                joyfully invite you to celebrate their wedding day as they tie the knot in love and harmony
+                as they celebrate their wedding day in love and harmony
             </p>
 
             <!-- Date Banner -->
@@ -200,12 +201,6 @@
             <p class="font-serif text-lg text-gray-700 mt-4">Mega Methodist Church & Dewan Temuan</p>
             <p class="font-sans text-xs tracking-wider text-gray-500 uppercase mt-1">Pertaling Jaya , Selangor</p>
 
-            <!-- CTA Buttons -->
-            <div class="mt-10 flex flex-wrap justify-center gap-4">
-                <button onclick="copyInvitationLink()" class="bg-ivory border border-gold text-burgundy font-sans text-xs uppercase tracking-widest px-6 py-3.5 rounded-full hover:bg-gold/10 transition-all flex items-center gap-2">
-                    <i class="fas fa-share-alt"></i> Share Card
-                </button>
-            </div>
         </div>
     </section>
 
@@ -518,27 +513,6 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-        }
-
-        // --- 5. SHARE CARD LINK ---
-        function copyInvitationLink() {
-            const dummy = document.createElement('input');
-            document.body.appendChild(dummy);
-            dummy.value = window.location.href;
-            dummy.select();
-            document.execCommand('copy');
-            document.body.removeChild(dummy);
-
-            // Subtle Toast Notification
-            const toast = document.createElement('div');
-            toast.className = 'fixed bottom-5 left-1/2 -translate-x-1/2 bg-burgundy text-white px-6 py-3 rounded-full text-xs uppercase tracking-widest shadow-xl z-50 transition-all duration-300';
-            toast.innerText = 'Invitation link copied to clipboard!';
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => document.body.removeChild(toast), 300);
-            }, 2500);
         }
 
         // Mobile Menu Toggle
