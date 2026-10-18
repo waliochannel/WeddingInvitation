@@ -15,5 +15,6 @@ The original invitation remains at [index.html](./index.html). Personalized gues
 - [Mr & Mrs Ajan & Family](./guests/ajan.html)
 - [Mr & Mrs Kennect & Family](./guests/kennect.html)
 - [Miss Fransica David](./guests/fransica-david.html)
+- [Joe David & Family](./guests/joe-david.html)
 
 Each guest link opens [guest-invitation.html](./guest-invitation.html) with that guest's name displayed on the invitation.
