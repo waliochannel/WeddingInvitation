@@ -102,6 +102,23 @@
             perspective: 1000px;
         }
 
+        .invitation-parent {
+            font-size: clamp(1.05rem, 2.8vw, 1.65rem);
+            line-height: 1.35;
+        }
+
+        .invitation-guest {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            line-height: 1.2;
+            overflow-wrap: anywhere;
+        }
+
+        .couple-name {
+            font-size: clamp(2.4rem, 9.5vw, 6rem);
+            letter-spacing: -0.035em;
+            line-height: 1.05;
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -164,9 +181,9 @@
         </div>
 
         <!-- Main Invitation Frame -->
-        <div class="max-w-3xl w-full bg-white rounded-3xl p-8 md:p-14 shadow-2xl border border-gold/30 text-center relative z-10 my-8 backdrop-blur-sm bg-white/95">
+        <div class="max-w-4xl w-full bg-white rounded-3xl p-6 sm:p-9 md:p-14 shadow-2xl border border-gold/30 text-center relative z-10 my-8 backdrop-blur-sm bg-white/95">
             <!-- Delicate Floral Header Graphic -->
-            <div class="mb-6 flex justify-center text-gold">
+            <div class="mb-5 flex justify-center text-gold">
                 <svg class="w-20 h-12" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M10 25 Q 35 10, 50 25 T 90 25" />
                     <circle cx="50" cy="25" r="4" fill="#c5a059" />
@@ -174,34 +191,34 @@
                 </svg>
             </div>
 
-            <p class="font-serif text-lg md:text-2xl font-semibold text-burgundy leading-relaxed">
+            <p class="invitation-parent font-serif font-semibold text-burgundy max-w-2xl mx-auto">
                 Mentri Anak Kria <span class="text-gold">&amp;</span> Emy Anak Simpin
             </p>
             <p class="font-serif italic text-base md:text-lg text-gold my-3">- serta -</p>
-            <p class="font-serif text-lg md:text-2xl font-semibold text-burgundy leading-relaxed mb-8">
+            <p class="invitation-parent font-serif font-semibold text-burgundy max-w-2xl mx-auto mb-7">
                 Atoi A/L Encheh <span class="text-gold">&amp;</span> Siti Binti Kandol
             </p>
 
-            <p class="font-sans text-sm md:text-base uppercase tracking-widest text-burgundy/80 mb-4">
+            <p class="font-sans text-xs sm:text-sm md:text-base uppercase tracking-[0.16em] text-burgundy/80 mb-4">
                 Dengan segala hormatnya menjemput
             </p>
-            <p id="guest-name" class="font-serif italic text-2xl md:text-4xl font-semibold text-gold leading-tight mb-5"></p>
+            <p id="guest-name" class="invitation-guest font-serif italic font-semibold text-gold mb-5"></p>
             <p class="font-serif italic text-base md:text-lg text-gray-600 mb-5">
                 ke majlis perkahwinan putera dan puteri kami
             </p>
 
-            <h1 class="font-script text-5xl md:text-7xl lg:text-8xl text-burgundy mb-2 leading-none">
+            <h1 class="couple-name font-script text-burgundy mb-2">
                 Anjisan Atoi
             </h1>
-            <div class="font-serif italic text-2xl md:text-3xl text-gold my-2">&amp;</div>
-            <h1 class="font-script text-5xl md:text-7xl lg:text-8xl text-burgundy mb-6 leading-none">
+            <div class="font-serif italic text-2xl md:text-3xl text-gold my-3">&amp;</div>
+            <h1 class="couple-name font-script text-burgundy mb-7">
                 Elizaberth Mentri
             </h1>
 
             <!-- Date Banner -->
-            <div class="inline-block border-y-2 border-gold/40 py-3 px-8 my-4">
-                <p class="font-sans uppercase text-sm md:text-base tracking-widest font-semibold text-burgundy">
-                    Saturday <span class="text-gold mx-2">•</span> 21 Nov, 2026 <span class="text-gold mx-2">•</span> 10:00 AM
+            <div class="inline-block max-w-full border-y border-gold/40 py-3 px-2 sm:px-8 my-3">
+                <p class="font-sans uppercase text-xs sm:text-sm md:text-base tracking-[0.12em] sm:tracking-widest font-semibold text-burgundy">
+                    Saturday <span class="text-gold mx-1 sm:mx-2">•</span> 21 Nov, 2026 <span class="text-gold mx-1 sm:mx-2">•</span> 10:00 AM
                 </p>
             </div>
 
